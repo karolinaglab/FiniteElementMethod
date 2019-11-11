@@ -1,67 +1,43 @@
+import functions.GaussInterpolation;
 import functions.NodeAndElementGenerator;
 import models.FEMGrid;
 import models.GlobalData;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import models.InterpolationPoint;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
 
         String[] data = new String[4];
         FEMGrid femGrid = new FEMGrid();
+        GlobalData globalData = new GlobalData();
 
-        JSONParser jsonParser = new JSONParser();
+        globalData.printGlobalData();
 
-        try
-        {
-            //Read JSON file
-            Object obj = jsonParser.parse(new FileReader(System.getProperty("user.dir") + "/src/main/java/mes.json"));
+        // FEM Grid
+        femGrid.setNodes(NodeAndElementGenerator.generateNodes(globalData.getHeight(),globalData.getWidth(),globalData.getnW(),globalData.getnH()));
+        femGrid.printGrid();
 
-            JSONObject jsonObject = (JSONObject) obj;
+        femGrid.setElements(NodeAndElementGenerator.generateElements(globalData.getnH(), globalData.getnE()));
+        femGrid.printElementsDetails();
 
-            double H = (double) jsonObject.get("H");
-            double W = (double) jsonObject.get("W");
-            double nH = (double) jsonObject.get("nH");
-            double nW = (double) jsonObject.get("nW");
 
-            JSONArray jsonArrayPC = (JSONArray) jsonObject.get("pC");
-            List<Double> pC = new ArrayList<>();
-            for (Object o : jsonArrayPC) {
-                pC.add((double) o);
-            }
+        // GaussInterpolation
+        List<InterpolationPoint> interpolationPoints = GaussInterpolation.setInterpolationPoints(globalData.getpC());
 
-            JSONArray jsonArrayW = (JSONArray) jsonObject.get("wagi");
-            List<Double> wagi = new ArrayList<>();
-            for (Object o : jsonArrayW) {
-                wagi.add((double) o);
-            }
+        double[][] ksiMatrix = GaussInterpolation.countKsiDerivatives(interpolationPoints);
+        double[][] etaMatrix = GaussInterpolation.countEtaDerivatives(interpolationPoints);
+        double[][] shapeFunctions = GaussInterpolation.shapeFunctionMatrix(interpolationPoints);
 
-            GlobalData globalData = new GlobalData(H, W, nH, nW, pC, wagi);
 
-            femGrid.setNodes(NodeAndElementGenerator.generateNodes(globalData.getHeight(),globalData.getWidth(),globalData.getnW(),globalData.getnH()));
-            femGrid.printGrid();
-
-            femGrid.setElements(NodeAndElementGenerator.generateElements(globalData.getnH(), globalData.getnE()));
-            femGrid.printElementsDetails();
-
-            globalData.printGlobalData();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        System.out.println("KSI MATRIX");
+        GaussInterpolation.printMatrix(ksiMatrix, interpolationPoints.size(), 4);
+        System.out.println("ETA MATRIX");
+        GaussInterpolation.printMatrix(etaMatrix, interpolationPoints.size(), 4);
+        System.out.println("SHAPE FUNCTIONS MATRIX");
+        GaussInterpolation.printMatrix(shapeFunctions, interpolationPoints.size(), 4);
 
     }
 }

@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5c21e5e-b15f-4a91-9d32-a08af16a501c" name="Default Changelist" comment="" />
+    <list default="true" id="c5c21e5e-b15f-4a91-9d32-a08af16a501c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/GaussInterpolation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/InterpolationPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/GlobalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/GlobalData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/GlobalData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/GlobalData.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +26,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1TNbo6KotPsCl0bu4Hc7tD1HtEi" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -26,7 +43,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -73,10 +90,28 @@
       <workItem from="1573303679670" duration="740000" />
       <workItem from="1573378765922" duration="28000" />
       <workItem from="1573392824717" duration="5074000" />
+      <workItem from="1573398347156" duration="140000" />
+      <workItem from="1573398503364" duration="67000" />
+      <workItem from="1573398585111" duration="4065000" />
+      <workItem from="1573412411185" duration="7342000" />
+      <workItem from="1573475816710" duration="1103000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
