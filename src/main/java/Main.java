@@ -1,9 +1,8 @@
 import functions.GaussInterpolation;
 import functions.NodeAndElementGenerator;
-import models.FEMGrid;
-import models.GlobalData;
-import models.InterpolationPoint;
+import models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,10 +16,12 @@ public class Main {
         globalData.printGlobalData();
 
         // FEM Grid
-        femGrid.setNodes(NodeAndElementGenerator.generateNodes(globalData.getHeight(),globalData.getWidth(),globalData.getnW(),globalData.getnH()));
+        List<Node> nodes = NodeAndElementGenerator.generateNodes(globalData.getHeight(),globalData.getWidth(),globalData.getnW(),globalData.getnH());
+        femGrid.setNodes(nodes);
         femGrid.printGrid();
 
-        femGrid.setElements(NodeAndElementGenerator.generateElements(globalData.getnH(), globalData.getnE()));
+        List<Element> elements = NodeAndElementGenerator.generateElements(globalData.getnH(), globalData.getnE(), nodes);
+        femGrid.setElements(elements);
         femGrid.printElementsDetails();
 
 
@@ -39,6 +40,15 @@ public class Main {
         System.out.println("SHAPE FUNCTIONS MATRIX");
         GaussInterpolation.printMatrix(shapeFunctions, interpolationPoints.size(), 4);
 
+
+       // H MATRIX
+
+        for (int i = 0; i < elements.size(); i++) {
+            System.out.println("ELEMENT " + (i+1) + " H matrix");
+            elements.get(i).setH(GaussInterpolation.countMatrixH(elements.get(i), ksiMatrix, etaMatrix));
+            GaussInterpolation.printMatrix(elements.get(i).getH(), 4, 4);
+            System.out.println();
+        }
     }
 }
 

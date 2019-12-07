@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5c21e5e-b15f-4a91-9d32-a08af16a501c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/GaussInterpolation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/InterpolationPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/GlobalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/GlobalData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/GaussInterpolation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/GaussInterpolation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/NodeAndElementGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/NodeAndElementGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Element.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/FEMGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/FEMGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/models/GlobalData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/GlobalData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/NodeAndElementGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/NodeAndElementGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/Element.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/Element.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/FEMGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/FEMGrid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/Node.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,10 +39,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571684839984" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab7" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -94,8 +96,26 @@
       <workItem from="1573398503364" duration="67000" />
       <workItem from="1573398585111" duration="4065000" />
       <workItem from="1573412411185" duration="7342000" />
-      <workItem from="1573475816710" duration="1103000" />
+      <workItem from="1573475816710" duration="1370000" />
+      <workItem from="1573639523642" duration="211000" />
+      <workItem from="1573650432171" duration="690000" />
+      <workItem from="1573664017182" duration="50000" />
+      <workItem from="1573665965790" duration="96000" />
+      <workItem from="1573676342728" duration="624000" />
+      <workItem from="1573833365885" duration="2696000" />
+      <workItem from="1574506535594" duration="19192000" />
+      <workItem from="1574706484895" duration="1164000" />
+      <workItem from="1574964178339" duration="33000" />
+      <workItem from="1575718847378" duration="917000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Gauss Interpolation">
+      <created>1573477396494</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573477396494</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,5 +133,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Gauss Interpolation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Gauss Interpolation" />
   </component>
 </project>

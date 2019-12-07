@@ -18,6 +18,7 @@ public class NodeAndElementGenerator {
         boolean BC;
         List<Node> nodesList = new ArrayList<>();
 
+        int id = 1;
         for (double i = 0; i < nW; i++) {
             for (double j = 0; j < nH; j++) {
                 x = i * deltaX;
@@ -28,15 +29,17 @@ public class NodeAndElementGenerator {
                 } else {
                     BC = false;
                 }
-                Node nodeToAdd = new Node(x,y,BC);
+                Node nodeToAdd = new Node(x,y,BC,id);
                 nodesList.add(nodeToAdd);
+                id++;
             }
         }
 
         return nodesList;
     }
 
-    public static List<Element> generateElements(double nH, double nE) {
+
+    public static List<Element> generateElements(double nH, double nE, List<Node> nodes) {
 
         List<Element> elementsList = new ArrayList<>();
 
@@ -51,6 +54,16 @@ public class NodeAndElementGenerator {
             int id4 = id1 + 1;
 
             Element elementToAdd = new Element(id1,id2,id3,id4);
+
+            //Add list of nodes to element
+            for (int m = 0; m < 4; m++) {
+                for (int n = 0; n < nodes.size(); n++) {
+                    if (nodes.get(n).getId() == elementToAdd.getID()[m]) {
+                        elementToAdd.getNodes().add(nodes.get(n));
+                    }
+                }
+            }
+
             elementsList.add(elementToAdd);
         }
 

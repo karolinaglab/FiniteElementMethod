@@ -32,14 +32,21 @@ public class FEMGrid {
 
     public void printGrid() {
         nodes.forEach(node -> {
-            System.out.println("Node " + (nodes.indexOf(node) + 1) + ": (" + node.getX() + "," + node.getY() + ") BC = " + node.isBC());
+            System.out.println("Node " + (nodes.indexOf(node) + 1) + ": (" + node.getX() + "," + node.getY() + ") BC = " + node.isBC() + ", " + node.getId());
         });
     }
 
     public void printElementsDetails() {
         elements.forEach(element -> {
             double[] ID = element.getID();
+            List<Node> nodes = element.getNodes();
             System.out.println("Element " + (elements.indexOf(element) + 1) + " ID: [" + ID[0] + ", " + ID[1] + ", " + ID[2] + ", " + ID[3] + "]");
+
+            //PRINT ELEMENT NODES LIST
+            System.out.println("ELEMENT NODES " + (elements.indexOf(element) + 1));
+            for (Node node : nodes) {
+                System.out.println("ID: " + node.getId() + ", X: " + node.getX() + ", Y: " + node.getY());
+            }
         });
     }
 }

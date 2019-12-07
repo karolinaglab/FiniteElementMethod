@@ -4,16 +4,26 @@ public class Node {
 
     private double x;
     private double y;
+    private int id;
     private double t;
 
     // 0 - nie ma warunku brzegowego   1 - jest
     private boolean BC;
 
-    public Node(double x, double y, boolean BC) {
+    public Node(double x, double y, boolean BC, int id) {
         this.x = x;
         this.y = y;
         this.t = 0;
         this.BC = BC;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getX() {

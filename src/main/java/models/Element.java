@@ -1,8 +1,15 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Element {
 
     private double[] ID = new double[4];
+
+    private List<Node> nodes = new ArrayList<>();
+
+    private double[][] H = new double[4][4];
 
 
     public Element(double[] ID) {
@@ -22,5 +29,21 @@ public class Element {
 
     public void setID(double[] ID) {
         this.ID = ID;
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<Node> nodes) {
+        this.nodes = nodes;
+    }
+
+    public double[][] getH() {
+        return H;
+    }
+
+    public void setH(double[][] h) {
+        H = h;
     }
 }
