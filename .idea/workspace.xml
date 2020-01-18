@@ -2,17 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5c21e5e-b15f-4a91-9d32-a08af16a501c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/Calculations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mes2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FiniteElementMethod.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FiniteElementMethod.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/GaussInterpolation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/GaussInterpolation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/GaussInterpolation.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/functions/NodeAndElementGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/NodeAndElementGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Element.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/FEMGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/FEMGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/GlobalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/GlobalData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/InterpolationPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/IntegrationPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/FiniteElementMethod.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/NodeAndElementGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/NodeAndElementGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/models/Element.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/Element.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/models/FEMGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/FEMGrid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/models/GlobalData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/GlobalData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/models/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/models/Node.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,13 +48,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571684839984" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab7" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kglab\Desktop\Studia\Projects\FiniteElementMethod\src\main\java" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -106,7 +120,14 @@
       <workItem from="1574506535594" duration="19192000" />
       <workItem from="1574706484895" duration="1164000" />
       <workItem from="1574964178339" duration="33000" />
-      <workItem from="1575718847378" duration="917000" />
+      <workItem from="1575718847378" duration="15553000" />
+      <workItem from="1575753812432" duration="2161000" />
+      <workItem from="1575914697146" duration="6056000" />
+      <workItem from="1576062297784" duration="1727000" />
+      <workItem from="1577800000577" duration="1056000" />
+      <workItem from="1579338275979" duration="17538000" />
+      <workItem from="1579360459401" duration="1576000" />
+      <workItem from="1579375327875" duration="1934000" />
     </task>
     <task id="LOCAL-00001" summary="Added Gauss Interpolation">
       <created>1573477396494</created>
@@ -137,5 +158,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Gauss Interpolation" />
     <option name="LAST_COMMIT_MESSAGE" value="Added Gauss Interpolation" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="integrationPoints2" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

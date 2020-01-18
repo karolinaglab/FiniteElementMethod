@@ -32,7 +32,7 @@ public class FEMGrid {
 
     public void printGrid() {
         nodes.forEach(node -> {
-            System.out.println("Node " + (nodes.indexOf(node) + 1) + ": (" + node.getX() + "," + node.getY() + ") BC = " + node.isBC() + ", " + node.getId());
+            System.out.println("Node " + (nodes.indexOf(node) + 1) + ": (" + node.getX() + "," + node.getY() + ") boundary condition = " + node.isBoundaryCondition() + ", " + node.getId());
         });
     }
 
@@ -45,7 +45,7 @@ public class FEMGrid {
             //PRINT ELEMENT NODES LIST
             System.out.println("ELEMENT NODES " + (elements.indexOf(element) + 1));
             for (Node node : nodes) {
-                System.out.println("ID: " + node.getId() + ", X: " + node.getX() + ", Y: " + node.getY());
+                System.out.println("ID: " + node.getId() + ", X: " + node.getX() + ", Y: " + node.getY() + ", Node temperature: " + node.getTemperature());
             }
         });
     }

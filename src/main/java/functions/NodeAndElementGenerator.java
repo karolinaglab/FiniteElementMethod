@@ -9,13 +9,13 @@ import java.util.List;
 
 public class NodeAndElementGenerator {
 
-    public static List<Node> generateNodes(double Height, double Width, double nW, double nH) {
+    public static List<Node> generateNodes(double height, double width, double nW, double nH, double initialTemperature) {
 
-        double deltaX = Width / (nW - 1);
-        double deltaY = Height / (nH - 1);
+        double deltaX = width / (nW - 1);
+        double deltaY = height / (nH - 1);
         double x;
         double y;
-        boolean BC;
+        boolean boundaryCondition;
         List<Node> nodesList = new ArrayList<>();
 
         int id = 1;
@@ -24,12 +24,8 @@ public class NodeAndElementGenerator {
                 x = i * deltaX;
                 y = j * deltaY;
 
-                if (x == 0 || y == 0 || x == Width || y == Height) {
-                    BC = true;
-                } else {
-                    BC = false;
-                }
-                Node nodeToAdd = new Node(x,y,BC,id);
+                boundaryCondition = x == 0 || y == 0 || x == width || y == height;
+                Node nodeToAdd = new Node(x,y,boundaryCondition, initialTemperature, id);
                 nodesList.add(nodeToAdd);
                 id++;
             }

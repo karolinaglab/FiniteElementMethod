@@ -12,36 +12,58 @@ import java.util.List;
 
 public class GlobalData {
 
-    private double height;
-    private double width;
+    private double ambientTemperature;  // [st.C]
+    private double initialTemperature; // [st.C]
+    private double simulationTime;   // [s]
+    private double simulationStepTime;  // [s]
+    private double height;  // [m]
+    private double width;   // [m]
     private double nH;
     private double nW;
     private List<Double> pC;
     private List<Double> weights;
-
+    private double conductivity;  // [W/m*st.C]
+    private double density;       // [kg/m^3]
+    private double specificHeat;  // [J/kg*st.C]
+    private double alpha;
     //liczba węzłów
-    private double nN;
+    private double numberOfNodes;
 
     //liczba elementów
-    private double nE;
+    private double numberOfElements;
 
 
-    public GlobalData() {
+    public GlobalData(int choice) {
 
+        String path = "";
+        switch (choice) {
+            case 1:
+                path = "/src/main/java/mes.json";
+                break;
+            case 2:
+                path = "/src/main/java/mes2.json";
+                break;
+        }
         JSONParser jsonParser = new JSONParser();
-
         try {
             //Read JSON file
-            Object obj = jsonParser.parse(new FileReader(System.getProperty("user.dir") + "/src/main/java/mes.json"));
+            Object obj = jsonParser.parse(new FileReader(System.getProperty("user.dir") + path));
 
             JSONObject jsonObject = (JSONObject) obj;
-
+            this.ambientTemperature = (double) jsonObject.get("ambientTemperature");
+            this.initialTemperature = (double) jsonObject.get("initialTemperature");
+            this.simulationTime = (double) jsonObject.get("simulationTime");
+            this.simulationStepTime = (double) jsonObject.get("simulationStepTime");
             this.height = (double) jsonObject.get("H");
             this.width = (double) jsonObject.get("W");
             this.nH = (double) jsonObject.get("nH");
             this.nW = (double) jsonObject.get("nW");
-            this.nN = this.nH * this.nW;
-            this.nE = (this.nH - 1) * (this.nW - 1);
+            this.conductivity = (double) jsonObject.get("k");
+            this.specificHeat = (double) jsonObject.get("specificHeat");
+            this.density = (double) jsonObject.get("density");
+            this.alpha = (double) jsonObject.get("alpha");
+            this.numberOfNodes = this.nH * this.nW;
+            this.numberOfElements = (this.nH - 1) * (this.nW - 1);
 
             JSONArray jsonArrayPC = (JSONArray) jsonObject.get("pC");
             this.pC = new ArrayList<>();
@@ -60,17 +82,6 @@ public class GlobalData {
         }
     }
 
-    public GlobalData(double height, double width, double nH, double nW, List<Double> pc, List<Double> weights) {
-        this.height = height;
-        this.width = width;
-        this.nH = nH;
-        this.nW = nW;
-        this.nN = this.nH * this.nW;
-        this.nE = (this.nH - 1) * (this.nW - 1);
-        this.pC = pc;
-        this. weights = weights;
-    }
-
     public double getHeight() {
         return height;
     }
@@ -87,29 +98,65 @@ public class GlobalData {
         return nW;
     }
 
-    public double getnN() {
-        return nN;
+    public double getNumberOfNodes() {
+        return numberOfNodes;
     }
 
-    public double getnE() {
-        return nE;
+    public double getNumberOfElements() {
+        return numberOfElements;
     }
 
     public List<Double> getpC() {
         return pC;
     }
 
-    public List<Double> getWagi() {
+    public List<Double> getWeights() {
         return weights;
     }
 
+    public double getConductivity() {
+        return conductivity;
+    }
+
+    public double getDensity() {
+        return density;
+    }
+
+    public double getSpecificHeat() {
+        return specificHeat;
+    }
+
+    public double getAlpha() {
+        return alpha;
+    }
+
+    public double getAmbientTemperature() {
+        return ambientTemperature;
+    }
+
+    public double getSimulationTime() {
+        return simulationTime;
+    }
+
+    public double getSimulationStepTime() {
+        return simulationStepTime;
+    }
+
+    public double getInitialTemperature() {
+        return initialTemperature;
+    }
+
     public void printGlobalData() {
+        System.out.println("Ambient temperature = " + ambientTemperature);
+        System.out.println("Initial temperature = " + initialTemperature);
+        System.out.println("Simulation time = " + simulationTime);
+        System.out.println("Simulation step time = " + simulationStepTime);
         System.out.println("Height = " + height);
         System.out.println("Width = " + width);
         System.out.println("nH = " + nH);
         System.out.println("nW = " + nW);
-        System.out.println("nN = " + nN);
-        System.out.println("nE = " + nE);
+        System.out.println("nN = " + numberOfNodes);
+        System.out.println("nE = " + numberOfElements);
         System.out.print("pC: [");
         for (int i = 0; i < pC.size(); i++) {
             if(i != pC.size() - 1) System.out.print(pC.get(i) + ",");
@@ -122,5 +169,9 @@ public class GlobalData {
             else System.out.println(weights.get(i) + "]");
         }
 
+        System.out.println("k = " + conductivity);
+        System.out.println("density = " + density);
+        System.out.println("specificHeat = " + specificHeat);
+        System.out.println("alpha = " + alpha);
     }
 }

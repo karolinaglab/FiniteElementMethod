@@ -1,8 +1,8 @@
 {
   "H": 0.1,
   "W": 0.1,
-  "nH": 4.0,
-  "nW": 4.0,
+  "nH": 31.0,
+  "nW": 31.0,
   "pC": [-0.5773502692, 0.5773502692],
   "weights": [1.0,1.0],
   "k": 25.0,
@@ -11,6 +11,6 @@
   "alpha" : 300.0,
   "ambientTemperature" : 1200.0,
   "simulationTime" : 500.0,
-  "simulationStepTime" : 50.0,
+  "simulationStepTime" : 1.0,
   "initialTemperature" : 100.0
 }

@@ -11,6 +11,12 @@ public class Element {
 
     private double[][] H = new double[4][4];
 
+    private double[][] C = new double[4][4];
+
+    private double[][] HBC = new double[4][4];
+
+    private double[] P = new double[4];
+
 
     public Element(double[] ID) {
         this.ID = ID;
@@ -45,5 +51,29 @@ public class Element {
 
     public void setH(double[][] h) {
         H = h;
+    }
+
+    public double[][] getC() {
+        return C;
+    }
+
+    public void setC(double[][] c) {
+        C = c;
+    }
+
+    public double[][] getHBC() {
+        return HBC;
+    }
+
+    public void setHBC(double[][] HBC) {
+        this.HBC = HBC;
+    }
+
+    public double[] getP() {
+        return P;
+    }
+
+    public void setP(double[] p) {
+        P = p;
     }
 }
