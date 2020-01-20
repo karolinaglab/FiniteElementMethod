@@ -53,9 +53,9 @@ public class NodeAndElementGenerator {
 
             //Add list of nodes to element
             for (int m = 0; m < 4; m++) {
-                for (int n = 0; n < nodes.size(); n++) {
-                    if (nodes.get(n).getId() == elementToAdd.getID()[m]) {
-                        elementToAdd.getNodes().add(nodes.get(n));
+                for (Node node : nodes) {
+                    if (node.getId() == elementToAdd.getID()[m]) {
+                        elementToAdd.getNodes().add(node);
                     }
                 }
             }

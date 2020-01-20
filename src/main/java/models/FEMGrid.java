@@ -8,6 +8,10 @@ public class FEMGrid {
     private List<Node> nodes;
     private List<Element> elements;
 
+    private double[][] globalH;
+    private double[][] globalC;
+    private double[] globalP;
+
     public FEMGrid() {
 
         this.nodes = new ArrayList<>();
@@ -28,6 +32,30 @@ public class FEMGrid {
 
     public void setElements(List<Element> elements) {
         this.elements = elements;
+    }
+
+    public double[][] getGlobalH() {
+        return globalH;
+    }
+
+    public void setGlobalH(double[][] globalH) {
+        this.globalH = globalH;
+    }
+
+    public double[][] getGlobalC() {
+        return globalC;
+    }
+
+    public void setGlobalC(double[][] globalC) {
+        this.globalC = globalC;
+    }
+
+    public double[] getGlobalP() {
+        return globalP;
+    }
+
+    public void setGlobalP(double[] globalP) {
+        this.globalP = globalP;
     }
 
     public void printGrid() {

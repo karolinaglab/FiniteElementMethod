@@ -1,10 +1,12 @@
-import functions.Calculations;
+import functions.MatrixCalculations;
+import functions.GaussInterpolation;
 import functions.NodeAndElementGenerator;
 import models.*;
 import org.la4j.LinearAlgebra;
 import org.la4j.Matrix;
 import org.la4j.Vector;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -34,27 +36,27 @@ public class Main {
 
 
         // GaussInterpolation
-        List<IntegrationPoint> integrationPoints = Calculations.setIntegrationPoints(globalData.getpC());
+        List<IntegrationPoint> integrationPoints = GaussInterpolation.setIntegrationPoints(globalData.getpC());
 
-        double[][] ksiMatrix = Calculations.countKsiDerivatives(integrationPoints);
-        double[][] etaMatrix = Calculations.countEtaDerivatives(integrationPoints);
-        double[][] shapeFunctions = Calculations.shapeFunctionMatrix(integrationPoints);
+        double[][] ksiMatrix = GaussInterpolation.countKsiDerivatives(integrationPoints);
+        double[][] etaMatrix = GaussInterpolation.countEtaDerivatives(integrationPoints);
+        double[][] shapeFunctions = GaussInterpolation.shapeFunctionMatrix(integrationPoints);
 
 
         System.out.println("KSI MATRIX");
-        Calculations.printMatrix(ksiMatrix, integrationPoints.size(), 4);
+        MatrixCalculations.printMatrix(ksiMatrix, integrationPoints.size(), 4);
         System.out.println("ETA MATRIX");
-        Calculations.printMatrix(etaMatrix, integrationPoints.size(), 4);
+        MatrixCalculations.printMatrix(etaMatrix, integrationPoints.size(), 4);
         System.out.println("SHAPE FUNCTIONS MATRIX");
-        Calculations.printMatrix(shapeFunctions, integrationPoints.size(), 4);
+        MatrixCalculations.printMatrix(shapeFunctions, integrationPoints.size(), 4);
 
 
         // H MATRIX
 
         for (int i = 0; i < elements.size(); i++) {
             System.out.println("ELEMENT " + (i + 1) + " H matrix");
-            elements.get(i).setH(Calculations.countMatrixH(elements.get(i), ksiMatrix, etaMatrix, globalData.getConductivity()));
-            Calculations.printMatrix(elements.get(i).getH(), 4, 4);
+            elements.get(i).setH(MatrixCalculations.countMatrixH(elements.get(i), ksiMatrix, etaMatrix, globalData.getConductivity()));
+            MatrixCalculations.printMatrix(elements.get(i).getH(), 4, 4);
             System.out.println();
         }
 
@@ -63,8 +65,8 @@ public class Main {
 
         for (int i = 0; i < elements.size(); i++) {
             System.out.println("ELEMENT " + (i + 1) + " C matrix");
-            elements.get(i).setC(Calculations.countMatrixC(elements.get(i), ksiMatrix, etaMatrix, shapeFunctions, globalData.getDensity(), globalData.getSpecificHeat()));
-            Calculations.printMatrix(elements.get(i).getC(), 4, 4);
+            elements.get(i).setC(MatrixCalculations.countMatrixC(elements.get(i), ksiMatrix, etaMatrix, shapeFunctions, globalData.getDensity(), globalData.getSpecificHeat()));
+            MatrixCalculations.printMatrix(elements.get(i).getC(), 4, 4);
             System.out.println();
         }
 
@@ -73,8 +75,8 @@ public class Main {
 
         for (int i = 0; i < elements.size(); i++) {
             System.out.println("ELEMENT " + (i + 1) + " HBC matrix");
-            elements.get(i).setHBC(Calculations.countMatrixHBC(elements.get(i), globalData.getAlpha()));
-            Calculations.printMatrix(elements.get(i).getHBC(), 4, 4);
+            elements.get(i).setHBC(MatrixCalculations.countMatrixHBC(elements.get(i), globalData.getAlpha()));
+            MatrixCalculations.printMatrix(elements.get(i).getHBC(), 4, 4);
             System.out.println();
         }
 
@@ -83,7 +85,7 @@ public class Main {
 
         for (int i = 0; i < elements.size(); i++) {
             System.out.println("ELEMENT " + (i + 1) + " Vector P");
-            elements.get(i).setP(Calculations.countVectorP(elements.get(i), globalData.getAlpha(), globalData.getAmbientTemperature()));
+            elements.get(i).setP(MatrixCalculations.countVectorP(elements.get(i), globalData.getAlpha(), globalData.getAmbientTemperature()));
             System.out.println(Arrays.toString(elements.get(i).getP()));
             System.out.println();
         }
@@ -102,13 +104,16 @@ public class Main {
             }
         }
 
-        Calculations.matrixAggregation(elements, globalH, globalC, globalP);
+        MatrixCalculations.matrixAggregation(elements, globalH, globalC, globalP);
+        femGrid.setGlobalH(globalH);
+        femGrid.setGlobalC(globalC);
+        femGrid.setGlobalP(globalP);
         System.out.println("GLOBAL H: ");
-        Calculations.printMatrix(globalH, size, size);
+       // Calculations.printMatrix(globalH, size, size);
         System.out.println("GLOBAL C: ");
-        Calculations.printMatrix(globalC, size, size);
+       // Calculations.printMatrix(globalC, size, size);
         System.out.println("GLOBAL P: ");
-        System.out.println(Arrays.toString(globalP));
+       // System.out.println(Arrays.toString(globalP));
 
         double[][] finalH = new double[size][size];
         double[][] finalC = new double[size][size];
@@ -123,13 +128,15 @@ public class Main {
         double simulationTime = globalData.getSimulationTime();
         int numberOfSteps = (int) (simulationTime / simulationStepTime);
 
+        Matrix H = Matrix.from2DArray(finalH);
+        H = H.withInverter(LinearAlgebra.GAUSS_JORDAN).inverse();
         for (int i = 0; i < numberOfSteps; i++) {
             double[] initialTemperatures = new double[nodes.size()];
             for (int j = 0; j < nodes.size(); j++) {
                 initialTemperatures[j] = femGrid.getNodes().get(j).getTemperature();
             }
 
-            Matrix H = Matrix.from2DArray(finalH);
+
             Matrix C = Matrix.from2DArray(finalC);
             Vector temperatures = Vector.fromArray(initialTemperatures);
             Vector P = Vector.fromArray(globalP);
@@ -137,12 +144,13 @@ public class Main {
             Vector C_t = C.multiply(temperatures);
             C_t = C_t.subtract(P);
 
-            Vector nextTemperatures = C_t.multiply(H.withInverter(LinearAlgebra.GAUSS_JORDAN).inverse());
+            Vector nextTemperatures = C_t.multiply(H);
 
             for (int j = 0; j < globalData.getNumberOfNodes(); j++) {
                 femGrid.getNodes().get(j).setTemperature(nextTemperatures.get(j));
             }
-            System.out.println("Time [s] = " + (simulationStepTime * (i+1)) + ": min temp = " + nextTemperatures.min() + " max temp = " + nextTemperatures.max());
+            DecimalFormat decimalFormat = new DecimalFormat("#.###");
+            System.out.println("Time [s] = " + (simulationStepTime * (i+1)) + ": min temp = " + decimalFormat.format(nextTemperatures.min()) + " max temp = " + decimalFormat.format(nextTemperatures.max()));
         }
     }
 }
